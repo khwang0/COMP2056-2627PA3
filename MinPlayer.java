@@ -8,7 +8,12 @@ import java.util.List;
 public class MinPlayer extends LazyPlayer {
     /**
      * 
-     * Play Card Strategy:
+     * 
+     * Apply the following strategy using the table state when playCard()
+     * is called. You do not need to predict other players' cards or later
+     * changes to the stacks. This strategy does not guarantee that the
+     * player will avoid collecting cards.
+     * 
      * 
      * The strategy of this computer is to avoid taking cards.
      * 1. Amount all possible options, set the lowest priority to the 

@@ -42,16 +42,19 @@ public class Table {
     }
 
     /**
-     * Method to create players.
-     * You can modify this method to create different types of players
+     * Creates the default players.
+     *
+     * To use LazyPlayer or MinPlayer, override this method in PA3Table.
+     * See the supplied PA3Table.java for an example.
+     *
+     * Do not instantiate LazyPlayer or MinPlayer directly in this class:
+     * Table belongs to package PA2, while those classes are in the
+     * default package.
      */
     protected void createPlayer() {
         for (int i = 0; i < NUM_OF_PLAYERS; i++) 
             players[i] = new Player(NAMES[i]);
 
-        //You can do something like this to create different types of players
-        //players[1] = new LazyPlayer();
-        //players[2] = new MinPlayer(this);
 
     }
     protected void dealCardsAndSetupStacks() {

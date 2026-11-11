@@ -31,7 +31,7 @@ public class TestClassForPA3 {
     void testGetScore() {
         Player p = new LazyPlayer();
         p.moveToPile( new Card[] {new Card(10)} , 1);
-        assert(p.getScore() == 3);
+        assertEquals(3, p.getScore());
     }
 
 
@@ -43,9 +43,9 @@ public class TestClassForPA3 {
         p.dealCard(new Card(7));
         p.dealCard(new Card(5));
 
-        assert(p.getHandCard(0).getNumber() == 4);
-        assert(p.getHandCard(1).getNumber() == 5);
-        assert(p.getHandCard(2).getNumber() == 7);
+        assertEquals(4, p.getHandCard(0).getNumber());
+        assertEquals(5, p.getHandCard(1).getNumber());
+        assertEquals(7, p.getHandCard(2).getNumber());
     }
 
     @Test
@@ -53,14 +53,28 @@ public class TestClassForPA3 {
         Player p = new LazyPlayer();
         Card[] cards = {new Card(4), new Card(6), new Card(8), null, null, null};
         p.moveToPile(cards, 3);
-        out.flush();
-        out.reset();
-        p.printPile();
-        String pile = out.toString().trim();
+        assertNull(cards[0], "Collected card must be removed from the stack");
+        assertNull(cards[1], "Collected card must be removed from the stack");
+        assertNull(cards[2], "Collected card must be removed from the stack");
+        assertEquals(3, p.getScore());
+
+        ByteArrayOutputStream captured = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        try (PrintStream captureStream = new PrintStream(captured)) {
+            try {
+                System.setOut(captureStream);
+                p.printPile();
+                captureStream.flush();
+            } finally {
+                System.setOut(originalOut);
+            }
+        }
+
+        String pile = captured.toString().trim();
         assertTrue(pile.contains("4(1)"));
         assertTrue(pile.contains("6(1)"));
         assertTrue(pile.contains("8(1)"));
-        assertEquals(pile.length(), 12);
+        assertEquals(12, pile.length());
     }
 
     @Order(1)

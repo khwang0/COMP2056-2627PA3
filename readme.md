@@ -17,8 +17,12 @@
 > java -jar demo.jar
 > ```
 
+
+
 > Files to submit for the assignments:
 > `LazyPlayer.java`, `MinPlayer.java`, and `Player.java` to Moodle.
+> 
+> However, you will need to modify the `Table.java` file to run your `LazyPlayer` and `MinPlayer` properly. You do not need to submit the modified `Table.java` file.
 
 
 # Learning outcome
